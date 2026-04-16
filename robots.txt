@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sevintn.github.io/drpaolarodriguez/sitemap.xml
