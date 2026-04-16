@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dra. Paola Rodríguez Ramos — Especialista en Nefrología. Atención en Hospital del Valle, San Pedro Sula, Honduras." />
+  <title>Dra. Paola Rodríguez Ramos | Nefróloga</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <span class="navbar__brand-name">Dra. Paola Rodríguez Ramos</span>
+        <span class="navbar__brand-specialty">Nefrología</span>
+      </a>
+
+      <ul class="navbar__links">
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="trayectoria.html">Trayectoria</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="blog.html">Información</a></li>
+        <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
+      </ul>
+
+      <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" role="menu">
+    <a href="index.html">Inicio</a>
+    <a href="trayectoria.html">Trayectoria</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="blog.html">Información para Pacientes</a>
+    <a href="cita.html" class="btn-cita">Haz tu Cita</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" aria-label="Presentación">
+    <div class="container">
+      <div class="hero__inner">
+
+        <div class="hero__content">
+          <div class="hero__label">Nefrología · Honduras</div>
+
+          <h1 class="hero__title">
+            Dra. Paola<br />Rodríguez Ramos
+          </h1>
+
+          <blockquote class="hero__quote">
+            "La salud renal es el pilar silencioso de tu bienestar.<br />
+            Cuida tus riñones hoy, antes de que te lo pidan."
+            <cite>— Dra. Paola Rodríguez Ramos</cite>
+          </blockquote>
+
+          <div class="hero__buttons">
+            <a href="trayectoria.html" class="btn btn-outline">Conoce mi Trayectoria</a>
+            <a href="cita.html" class="btn btn-primary" style="background:#fff;color:var(--primary);">Haz tu Cita</a>
+          </div>
+        </div>
+
+        <div class="hero__photo-wrap" aria-hidden="true">
+          <div class="hero__photo-card">
+            <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="intro section" aria-label="Bienvenida">
+    <div class="container">
+      <div class="intro__inner">
+
+        <div class="intro__photo" aria-label="Foto de la Dra. Rodríguez Ramos">
+          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" />
+        </div>
+
+        <div class="intro__text">
+          <p class="section-label">Bienvenida</p>
+          <h2 class="section-title">Atención especializada<br />en salud renal</h2>
+
+          <p>
+            Mi nombre es <strong>Paola Rodríguez Ramos</strong>, soy médico especialista en Nefrología. 
+            Me formé en Costa Rica y completé mi especialidad en el 
+            <strong>Hospital Universitario 12 de Octubre</strong> en Madrid, España, 
+            una de las instituciones de referencia en nefrología a nivel mundial.
+          </p>
+          <p>
+            El propósito de esta página es acercar a mis pacientes información confiable sobre 
+            la salud renal, facilitar el acceso a mis servicios y acompañarlos en cada etapa 
+            de su cuidado médico con respeto, profesionalismo y calidez humana.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-item__value">7+</div>
+              <div class="stat-item__label">Años de formación</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__value">2</div>
+              <div class="stat-item__label">Países de estudio</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-item__value">100%</div>
+              <div class="stat-item__label">Atención personalizada</div>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem;">
+            <a href="trayectoria.html" class="btn btn-outline-blue">Ver Trayectoria</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES TEASER ===================== -->
+  <section class="services-teaser section--bg" aria-label="Servicios destacados">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Especialidad</p>
+        <h2 class="section-title">Servicios de Nefrología</h2>
+        <p class="section-subtitle">
+          Ofrezco atención integral en enfermedades renales, desde el diagnóstico 
+          temprano hasta el seguimiento a largo plazo.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+
+        <article class="service-card">
+          <div class="service-card__icon">
+            <!-- Kidney / filter icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.5 2 6 5 6 8c0 2 .8 3.8 2 5l-1 7h2l.5-3.5c.8.3 1.6.5 2.5.5s1.7-.2 2.5-.5L15 20h2l-1-7c1.2-1.2 2-3 2-5 0-3-2.5-6-6-6z" />
+            </svg>
+          </div>
+          <h3>Enfermedad Renal Crónica</h3>
+          <p>Diagnóstico, clasificación, manejo y seguimiento a largo plazo de pacientes con daño renal progresivo.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke-width="2"/>
+              <path d="M12 8v4l3 3" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Hipertensión Arterial</h3>
+          <p>Control especializado de la presión arterial refractaria y prevención del daño renal asociado.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Diálisis</h3>
+          <p>Seguimiento de pacientes en programas de hemodiálisis y diálisis peritoneal ambulatoria continua.</p>
+        </article>
+
+      </div>
+
+      <div class="text-center">
+        <a href="servicios.html" class="btn btn-primary">Ver todos los servicios</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BLOG PREVIEW ===================== -->
+  <section class="blog-preview section" aria-label="Artículos recientes">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Información</p>
+        <h2 class="section-title">Para mis pacientes</h2>
+        <p class="section-subtitle">
+          Artículos informativos sobre salud renal escritos en lenguaje claro y accesible.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+
+        <article class="blog-card">
+          <div class="blog-card__image" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.5 2 6 5 6 8c0 2 .8 3.8 2 5l-1 7h2l.5-3.5c.8.3 1.6.5 2.5.5s1.7-.2 2.5-.5L15 20h2l-1-7c1.2-1.2 2-3 2-5 0-3-2.5-6-6-6z" fill="rgba(255,255,255,0.6)"/>
+            </svg>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date">Educación · Abril 2026</div>
+            <h3>¿Qué son los riñones y qué función cumplen?</h3>
+            <p>Los riñones son órganos vitales que filtran más de 180 litros de sangre al día. Conoce todo sobre su función.</p>
+            <a href="blog.html#articulo1" class="blog-card__link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card__image" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14.93V17a1 1 0 11-2 0v-.07A8 8 0 014.07 11H4a1 1 0 110-2h.07A8 8 0 0111 3.07V3a1 1 0 112 0v.07A8 8 0 0119.93 9H20a1 1 0 110 2h-.07A8 8 0 0113 16.93z" fill="rgba(255,255,255,0.6)"/>
+            </svg>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date">Prevención · Abril 2026</div>
+            <h3>Señales de alerta de la enfermedad renal</h3>
+            <p>La enfermedad renal avanza silenciosamente. Aprende a reconocer sus síntomas antes de que sea tarde.</p>
+            <a href="blog.html#articulo2" class="blog-card__link">Leer más →</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card__image" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(255,255,255,0.6)"/>
+            </svg>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__date">Hábitos · Abril 2026</div>
+            <h3>Cómo proteger tus riñones con hábitos saludables</h3>
+            <p>Pequeños cambios en tu estilo de vida pueden hacer una gran diferencia en la salud de tus riñones.</p>
+            <a href="blog.html#articulo3" class="blog-card__link">Leer más →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="text-center">
+        <a href="blog.html" class="btn btn-outline-blue">Ver todos los artículos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section class="cta-banner" aria-label="Llamado a acción">
+    <div class="container">
+      <h2>¿Tienes dudas sobre tu salud renal?</h2>
+      <p>Agenda tu consulta hoy. Estoy aquí para acompañarte en cada paso de tu cuidado.</p>
+      <a href="cita.html" class="btn btn-outline">Haz tu Cita en Línea</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Brand & contact -->
+        <div>
+          <div class="footer__brand-name">Dra. Paola Rodríguez Ramos</div>
+          <div class="footer__brand-specialty">Nefróloga</div>
+
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Hospital del Valle, San Pedro Sula, Cortés, Honduras</span>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16z"/></svg>
+            <a href="tel:99461535">9946-1535</a>
+          </div>
+          <div class="footer__contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:pao.rodriguezra@gmail.com">pao.rodriguezra@gmail.com</a>
+          </div>
+
+          <div class="footer__social">
+            <a href="https://instagram.com/dra.paolarodrigueznefro" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="footer__col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="trayectoria.html">Trayectoria</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="blog.html">Información</a></li>
+            <li><a href="cita.html">Haz tu Cita</a></li>
+          </ul>
+        </div>
+
+        <!-- Hours -->
+        <div class="footer__col">
+          <h4>Horario de Atención</h4>
+          <div class="footer__hours">
+            <p>Lunes — Viernes</p>
+            <p style="color:#fff;font-weight:700;margin-bottom:1rem;">2:00 pm — 6:00 pm</p>
+            <p>Sábado</p>
+            <p style="color:#fff;font-weight:700;">8:00 am — 12:00 pm</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
