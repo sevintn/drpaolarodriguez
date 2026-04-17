@@ -2,7 +2,20 @@
    main.js — Dra. Paola Rodríguez Ramos
    ============================================= */
 
+/* -------------------------------------------
+   EMAILJS — Reemplaza estos tres valores con
+   los que obtengas en emailjs.com
+------------------------------------------- */
+const EMAILJS_PUBLIC_KEY  = 'HkDaIX200DNToqFUb';
+const EMAILJS_SERVICE_ID  = 'service_3ojrbth';
+const EMAILJS_TEMPLATE_ID = 'template_nz5sva2';
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Inicializar EmailJS
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
 
   /* -------------------------------------------
      1. NAVBAR — Scroll shadow + active link
@@ -67,8 +80,88 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* -------------------------------------------
-     4. APPOINTMENT FORM — Validation + mailto
+     4. APPOINTMENT FORM — Horas dinámicas + EmailJS
   ------------------------------------------- */
+
+  // Horarios según día de la semana
+  const SLOTS = {
+    // Lunes(1) a Viernes(5): 2 pm – 6 pm
+    weekday: ['2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm'],
+    // Sábado(6): 8 am – 12 pm
+    saturday: ['8:00 am', '9:00 am', '10:00 am', '11:00 am'],
+  };
+
+  const fechaInput = document.getElementById('fecha');
+  const horaSelect = document.getElementById('hora');
+  const horaMsgEl  = document.getElementById('hora-msg');
+
+  // Bloquear fechas anteriores a hoy
+  if (fechaInput) {
+    const hoy = new Date();
+    const yyyy = hoy.getFullYear();
+    const mm   = String(hoy.getMonth() + 1).padStart(2, '0');
+    const dd   = String(hoy.getDate()).padStart(2, '0');
+    fechaInput.setAttribute('min', `${yyyy}-${mm}-${dd}`);
+  }
+
+  function actualizarHoras(fechaVal) {
+    if (!horaSelect) return;
+
+    // Limpiar opciones y mensaje previo
+    horaSelect.innerHTML = '';
+    if (horaMsgEl) {
+      horaMsgEl.textContent = '';
+      horaMsgEl.style.color = '';
+    }
+
+    if (!fechaVal) {
+      horaSelect.innerHTML = '<option value="">— Selecciona primero una fecha —</option>';
+      horaSelect.disabled = true;
+      return;
+    }
+
+    // Parsear fecha en hora local (evita desfase UTC)
+    const [y, m, d] = fechaVal.split('-').map(Number);
+    const diaSemana = new Date(y, m - 1, d).getDay(); // 0=Dom,1=Lun,...,6=Sáb
+
+    let slots = [];
+
+    if (diaSemana === 0) {
+      // Domingo — sin atención
+      horaSelect.innerHTML = '<option value="">— Sin atención los domingos —</option>';
+      horaSelect.disabled = true;
+      if (horaMsgEl) {
+        horaMsgEl.textContent = 'No hay atención los domingos. Por favor elige otro día.';
+        horaMsgEl.style.color = '#c0392b';
+      }
+      return;
+    } else if (diaSemana >= 1 && diaSemana <= 5) {
+      slots = SLOTS.weekday;   // Lun – Vie
+    } else if (diaSemana === 6) {
+      slots = SLOTS.saturday;  // Sábado
+    }
+
+    // Construir opciones
+    const defaultOpt = document.createElement('option');
+    defaultOpt.value = '';
+    defaultOpt.textContent = '— Sin preferencia —';
+    horaSelect.appendChild(defaultOpt);
+
+    slots.forEach(slot => {
+      const opt = document.createElement('option');
+      opt.value = slot;
+      opt.textContent = slot;
+      horaSelect.appendChild(opt);
+    });
+
+    horaSelect.disabled = false;
+  }
+
+  if (fechaInput) {
+    fechaInput.addEventListener('change', () => actualizarHoras(fechaInput.value));
+  }
+
+  // --- Formulario ---
   const citaForm = document.getElementById('citaForm');
 
   if (citaForm) {
@@ -109,9 +202,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // Validar que no sea domingo
+      if (fechaInput && fechaInput.value) {
+        const [y, m, d] = fechaInput.value.split('-').map(Number);
+        if (new Date(y, m - 1, d).getDay() === 0) {
+          valid = false;
+          const group = fechaInput.closest('.form-group');
+          if (group) group.classList.add('error');
+        }
+      }
+
       if (!valid) return;
 
-      // Build mailto
       const nombre   = document.getElementById('nombre').value.trim();
       const telefono = document.getElementById('telefono').value.trim();
       const email    = document.getElementById('email').value.trim();
@@ -120,29 +222,77 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora     = document.getElementById('hora')?.value || '';
       const mensaje  = document.getElementById('mensaje')?.value.trim() || '';
 
-      const subject = encodeURIComponent(`Solicitud de Cita — ${nombre}`);
-      const body = encodeURIComponent(
-        `Nombre: ${nombre}\n` +
-        `Teléfono: ${telefono}\n` +
-        `Correo: ${email}\n` +
-        `Motivo de consulta: ${motivo}\n` +
-        `Fecha preferida: ${fecha}\n` +
-        `Hora preferida: ${hora || 'Sin preferencia'}\n` +
-        `Mensaje adicional:\n${mensaje || 'Ninguno'}`
-      );
-
-      window.location.href = `mailto:pao.rodriguezra@gmail.com?subject=${subject}&body=${body}`;
-
-      // Success feedback
       const btn = citaForm.querySelector('.btn-submit');
-      if (btn) {
-        const original = btn.textContent;
-        btn.textContent = '¡Solicitud enviada!';
-        btn.style.background = '#2E7D32';
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.style.background = '';
-        }, 3000);
+
+      // Enviar con EmailJS
+      if (typeof emailjs !== 'undefined' &&
+          EMAILJS_PUBLIC_KEY  !== 'TU_PUBLIC_KEY' &&
+          EMAILJS_SERVICE_ID  !== 'TU_SERVICE_ID' &&
+          EMAILJS_TEMPLATE_ID !== 'TU_TEMPLATE_ID') {
+
+        if (btn) {
+          btn.textContent = 'Enviando…';
+          btn.disabled = true;
+        }
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          nombre:           nombre,
+          telefono:         telefono,
+          email_paciente:   email,
+          motivo:           motivo,
+          fecha_preferida:  fecha,
+          hora_preferida:   hora || 'Sin preferencia',
+          mensaje:          mensaje || 'Ninguno',
+        })
+        .then(() => {
+          if (btn) {
+            btn.textContent = '¡Solicitud enviada!';
+            btn.style.background = '#2E7D32';
+            btn.disabled = false;
+            setTimeout(() => {
+              btn.textContent = 'Enviar Solicitud de Cita';
+              btn.style.background = '';
+            }, 4000);
+          }
+          citaForm.reset();
+          actualizarHoras('');
+        })
+        .catch((err) => {
+          console.error('EmailJS error:', err);
+          if (btn) {
+            btn.textContent = 'Error al enviar. Intenta de nuevo.';
+            btn.style.background = '#c0392b';
+            btn.disabled = false;
+            setTimeout(() => {
+              btn.textContent = 'Enviar Solicitud de Cita';
+              btn.style.background = '';
+            }, 4000);
+          }
+        });
+
+      } else {
+        // Fallback mailto (mientras no estén configuradas las claves de EmailJS)
+        const subject = encodeURIComponent(`Solicitud de Cita — ${nombre}`);
+        const body = encodeURIComponent(
+          `Nombre: ${nombre}\n` +
+          `Teléfono: ${telefono}\n` +
+          `Correo: ${email}\n` +
+          `Motivo de consulta: ${motivo}\n` +
+          `Fecha preferida: ${fecha}\n` +
+          `Hora preferida: ${hora || 'Sin preferencia'}\n` +
+          `Mensaje adicional:\n${mensaje || 'Ninguno'}`
+        );
+        window.location.href = `mailto:pao.rodriguezra@gmail.com?subject=${subject}&body=${body}`;
+
+        if (btn) {
+          const original = btn.textContent;
+          btn.textContent = '¡Solicitud enviada!';
+          btn.style.background = '#2E7D32';
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = '';
+          }, 3000);
+        }
       }
     });
   }
