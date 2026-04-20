@@ -9,6 +9,7 @@
 const EMAILJS_PUBLIC_KEY  = 'HkDaIX200DNToqFUb';
 const EMAILJS_SERVICE_ID  = 'service_3ojrbth';
 const EMAILJS_TEMPLATE_ID = 'template_nz5sva2';
+const EMAILJS_TEMPLATE_PACIENTE_ID = 'template_xt7vfh8'
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -243,6 +244,15 @@ document.addEventListener('DOMContentLoaded', () => {
           fecha_preferida:  fecha,
           hora_preferida:   hora || 'Sin preferencia',
           mensaje:          mensaje || 'Ninguno',
+        })
+        .then(() => {
+          // Enviar confirmación al paciente
+          return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_PACIENTE_ID, {
+            nombre:          nombre,
+            email_paciente:  email,
+            fecha_preferida: fecha,
+            hora_preferida:  hora || 'Sin preferencia',
+          });
         })
         .then(() => {
           if (btn) {
