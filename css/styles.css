@@ -1072,6 +1072,24 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   border: none;
 }
 
+.yt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.yt-grid .video-wrapper {
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .yt-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Grid de redes sociales */
 .media-grid {
   display: grid;
