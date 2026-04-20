@@ -1082,6 +1082,8 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
 .yt-grid .video-wrapper {
   max-width: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 @media (max-width: 640px) {
