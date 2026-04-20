@@ -1050,8 +1050,29 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 }
 
 /* =============================================
-   FOOTER
+   VIDEO ENTREVISTA
    ============================================= */
+.entrevista-section { background: #fff; }
+
+.video-wrapper {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
 .footer {
   background: var(--primary-dark);
   color: rgba(255,255,255,0.75);
