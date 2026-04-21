@@ -1086,7 +1086,6 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   margin: 0;
 }
 
-@media (max-width: 640px) {
 .yt-thumb {
   display: block;
   position: relative;
@@ -1130,7 +1129,8 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 
-
+@media (max-width: 640px) {
+  .yt-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1170,9 +1170,10 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
 .fb-video-wrapper iframe {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 80px);
   border: none;
 }
 
