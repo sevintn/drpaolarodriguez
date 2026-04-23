@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2e5c99;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="kidneyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c8daf5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="250" cy="250" r="250" fill="url(#bgGrad)" />
+
+  <!-- Left kidney -->
+  <g transform="translate(148, 130)">
+    <path d="
+      M 38 0
+      C 15 0, 0 18, 0 42
+      C 0 68, 8 88, 18 105
+      C 26 118, 30 132, 30 148
+      C 30 162, 24 172, 24 182
+      C 24 194, 30 202, 38 202
+      C 50 202, 58 190, 60 174
+      C 62 158, 56 140, 54 122
+      C 52 104, 56 88, 62 72
+      C 68 54, 70 40, 66 24
+      C 62 8, 52 0, 38 0 Z
+    " fill="url(#kidneyGrad)" opacity="0.95"/>
+    <!-- Inner curve -->
+    <path d="
+      M 38 18
+      C 44 18, 50 24, 52 36
+      C 54 50, 50 66, 46 82
+      C 42 98, 40 116, 42 134
+    " fill="none" stroke="#2e5c99" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <!-- Right kidney (mirrored) -->
+  <g transform="translate(352, 130) scale(-1,1) translate(-70, 0)">
+    <path d="
+      M 38 0
+      C 15 0, 0 18, 0 42
+      C 0 68, 8 88, 18 105
+      C 26 118, 30 132, 30 148
+      C 30 162, 24 172, 24 182
+      C 24 194, 30 202, 38 202
+      C 50 202, 58 190, 60 174
+      C 62 158, 56 140, 54 122
+      C 52 104, 56 88, 62 72
+      C 68 54, 70 40, 66 24
+      C 62 8, 52 0, 38 0 Z
+    " fill="url(#kidneyGrad)" opacity="0.95"/>
+    <path d="
+      M 38 18
+      C 44 18, 50 24, 52 36
+      C 54 50, 50 66, 46 82
+      C 42 98, 40 116, 42 134
+    " fill="none" stroke="#2e5c99" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  </g>
+
+  <!-- Decorative line separator -->
+  <line x1="120" y1="368" x2="380" y2="368" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+
+  <!-- Doctor name -->
+  <text x="250" y="408" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="1">Dra. Paola Rodríguez Ramos</text>
+
+  <!-- Specialty -->
+  <text x="250" y="446" font-family="Georgia, 'Times New Roman', serif" font-size="22" fill="rgba(255,255,255,0.80)" text-anchor="middle" letter-spacing="3">NEFRÓLOGA</text>
+
+  <!-- Subtle outer ring -->
+  <circle cx="250" cy="250" r="245" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="3"/>
+</svg>
