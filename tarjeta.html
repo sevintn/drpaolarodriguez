@@ -198,6 +198,15 @@
       stroke-linejoin: round;
     }
 
+    .btn-share {
+      background: #25d366;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+
+    .btn-share:hover {
+      background: #1fb855;
+    }
+
     .hint {
       margin-top: 0.75rem;
       font-size: 0.75rem;
@@ -261,7 +270,13 @@
     <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Descargar imagen
   </button>
-  <p class="hint">Se guardará como imagen JPG lista para compartir por WhatsApp</p>
+
+  <button class="btn-download btn-share" onclick="compartirTarjeta()">
+    <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    Compartir
+  </button>
+
+  <p class="hint" id="hint-text">Descarga la imagen y compártela por WhatsApp</p>
 
   <!-- html2canvas CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -279,6 +294,24 @@
         link.href = canvas.toDataURL('image/jpeg', 0.95);
         link.click();
       });
+    }
+    function compartirTarjeta() {
+      const url = 'https://drarodrigueznefrologia.com/tarjeta.html';
+      const hint = document.getElementById('hint-text');
+      if (navigator.share) {
+        navigator.share({
+          title: 'Dra. Paola Rodríguez Ramos — Nefróloga',
+          text: 'Tarjeta de presentación de la Dra. Paola Rodríguez Ramos, Nefróloga en Hospital del Valle, San Pedro Sula.',
+          url: url
+        });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          hint.textContent = '¡Link copiado al portapapeles!';
+          setTimeout(() => {
+            hint.textContent = 'Descarga la imagen y compártela por WhatsApp';
+          }, 3000);
+        });
+      }
     }
   </script>
 

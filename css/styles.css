@@ -222,6 +222,23 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   transform: translateY(-1px);
 }
 
+/* Ícono tarjeta de presentación en navbar */
+.navbar__card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: var(--primary);
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar__card-btn:hover {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--primary-dark);
+}
+
 /* Hamburger */
 .navbar__toggle {
   display: none;
