@@ -226,11 +226,12 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 .navbar__card-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  gap: 0.35rem;
   color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 4px 6px;
+  border-radius: 8px;
   transition: background 0.2s, color 0.2s;
 }
 
