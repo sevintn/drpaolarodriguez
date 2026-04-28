@@ -1386,3 +1386,43 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
   .stats-row { gap: 1.5rem; }
 }
+
+/* ===================== WHATSAPP FLOATING BUTTON ===================== */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 0.65rem 1.1rem 0.65rem 0.75rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.55);
+  color: #fff;
+}
+.whatsapp-float svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: 20px;
+    right: 16px;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.9rem 0.6rem 0.65rem;
+  }
+}
