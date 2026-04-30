@@ -168,8 +168,25 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
 .navbar__brand {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
   line-height: 1.2;
+}
+
+.navbar__logo {
+  height: 46px;
+  width: 46px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.navbar__brand-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar__brand-name {
