@@ -176,7 +176,7 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
 .navbar__logo {
   height: 46px;
-  width: 46px;
+  width: auto;
   object-fit: contain;
   background: #fff;
   border-radius: 8px;
