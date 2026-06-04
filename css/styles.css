@@ -1373,6 +1373,9 @@ p { margin-bottom: 1rem; color: var(--text-light); }
    RESPONSIVE
    ============================================= */
 @media (max-width: 900px) {
+  .navbar__links { display: none; }
+  .navbar__toggle { display: flex; }
+
   .hero__inner { grid-template-columns: 1fr; text-align: center; }
   .hero__label { justify-content: center; }
   .hero__buttons { justify-content: center; }
@@ -1399,8 +1402,6 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 
 @media (max-width: 640px) {
   .section { padding: 55px 0; }
-  .navbar__links { display: none; }
-  .navbar__toggle { display: flex; }
 
   .form-row { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; }
