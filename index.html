@@ -37,6 +37,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Physician",
+    "@id": "https://drarodrigueznefrologia.com/#physician",
     "name": "Dra. Paola Rodríguez Ramos",
     "description": "Especialista en Nefrología en San Pedro Sula, Honduras. Atención de enfermedades renales, diálisis, trasplante renal e hipertensión arterial.",
     "medicalSpecialty": "Nephrology",
@@ -44,6 +45,25 @@
     "telephone": "+50499461535",
     "email": "pao.rodriguezra@gmail.com",
     "image": "https://drarodrigueznefrologia.com/images/paola-rodriguez.jpg",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "City",
+      "name": "San Pedro Sula"
+    },
+    "availableService": [
+      {
+        "@type": "MedicalProcedure",
+        "name": "Consulta de nefrología"
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "Manejo de enfermedad renal crónica"
+      },
+      {
+        "@type": "MedicalTherapy",
+        "name": "Seguimiento de diálisis y trasplante renal"
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Hospital del Valle, Edificio Principal, Consultorio EP-15",
@@ -93,7 +113,7 @@
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__brand">
-        <img src="images/logo-nav.png" alt="Logo Dra. Paola Rodríguez" class="navbar__logo" />
+        <img src="images/logo-nav.png" alt="Logo Dra. Paola Rodríguez" class="navbar__logo" width="120" height="107" decoding="async" />
         <div class="navbar__brand-text">
           <span class="navbar__brand-name">Dra. Paola Rodríguez Ramos</span>
           <span class="navbar__brand-specialty">Nefrología</span>
@@ -156,7 +176,7 @@
 
         <div class="hero__photo-wrap" aria-hidden="true">
           <div class="hero__photo-card">
-            <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" />
+            <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" decoding="async" fetchpriority="high" />
           </div>
         </div>
 
@@ -170,7 +190,7 @@
       <div class="intro__inner">
 
         <div class="intro__photo" aria-label="Foto de la Dra. Rodríguez Ramos">
-          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" />
+          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" loading="lazy" decoding="async" />
         </div>
 
         <div class="intro__text">
