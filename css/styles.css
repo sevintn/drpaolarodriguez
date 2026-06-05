@@ -1314,6 +1314,24 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   stroke-width: 1.8;
 }
 
+.footer__review-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.82);
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.footer__review-link:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
 .footer__bottom {
   padding: 1.25rem 0;
   text-align: center;
