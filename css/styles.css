@@ -211,8 +211,8 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 }
 
 .navbar__links a {
-  padding: 0.5rem 0.85rem;
-  font-size: 0.88rem;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   color: var(--text);
@@ -992,6 +992,29 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   box-shadow: 0 8px 20px rgba(21, 101, 192, 0.3);
 }
 
+.btn-submit--success,
+.btn-submit--success:hover {
+  background: #2E7D32;
+}
+
+.btn-submit--error,
+.btn-submit--error:hover {
+  background: #c0392b;
+}
+
+.form-status {
+  min-height: 1.2rem;
+  margin: 0.85rem 0 0;
+  text-align: center;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.form-status--pending { color: var(--primary); }
+.form-status--success { color: #2E7D32; }
+.form-status--error { color: #c0392b; }
+
 /* Info card */
 .info-card {
   background: var(--bg);
@@ -1282,6 +1305,15 @@ p { margin-bottom: 1rem; color: var(--text-light); }
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
   color: rgba(255,255,255,0.75);
+}
+
+.footer__hours .footer__hours-time {
+  color: #fff;
+  font-weight: 700;
+}
+
+.footer__hours .footer__hours-time:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 .footer__social {

@@ -9,7 +9,7 @@
 const EMAILJS_PUBLIC_KEY  = 'HkDaIX200DNToqFUb';
 const EMAILJS_SERVICE_ID  = 'service_3ojrbth';
 const EMAILJS_TEMPLATE_ID = 'template_nz5sva2';
-const EMAILJS_TEMPLATE_PACIENTE_ID = 'template_xt7vfh8'
+const EMAILJS_TEMPLATE_PACIENTE_ID = 'template_xt7vfh8';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,24 +45,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.navbar__mobile');
 
   if (toggle && mobileMenu) {
+    const setMenuOpen = (isOpen) => {
+      toggle.classList.toggle('open', isOpen);
+      mobileMenu.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    };
+
     toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
+      setMenuOpen(!mobileMenu.classList.contains('open'));
     });
 
     // Close on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        mobileMenu.classList.remove('open');
+        setMenuOpen(false);
       });
     });
 
     // Close on outside click
     document.addEventListener('click', (e) => {
       if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
-        toggle.classList.remove('open');
-        mobileMenu.classList.remove('open');
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
       }
     });
   }
@@ -166,12 +175,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const citaForm = document.getElementById('citaForm');
 
   if (citaForm) {
+    const btn = citaForm.querySelector('.btn-submit');
+    const formStatus = document.createElement('p');
+    formStatus.className = 'form-status';
+    formStatus.setAttribute('aria-live', 'polite');
+    if (btn) {
+      btn.insertAdjacentElement('afterend', formStatus);
+    }
+
+    const setFormStatus = (message, type = '') => {
+      formStatus.textContent = message;
+      formStatus.className = `form-status${type ? ` form-status--${type}` : ''}`;
+    };
+
+    const setButtonState = (text, type = '') => {
+      if (!btn) return;
+      btn.textContent = text;
+      btn.classList.toggle('btn-submit--success', type === 'success');
+      btn.classList.toggle('btn-submit--error', type === 'error');
+    };
+
+    const resetButtonState = () => {
+      setButtonState('Enviar Solicitud de Cita');
+      if (btn) btn.disabled = false;
+    };
+
     citaForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      setFormStatus('');
 
       const fields = [
         { id: 'nombre',  msg: 'Por favor ingresa tu nombre completo.' },
-        { id: 'telefono', msg: 'Por favor ingresa tu número de teléfono.' },
+        { id: 'telefono', msg: 'Por favor ingresa un teléfono válido.', isPhone: true },
         { id: 'email',   msg: 'Por favor ingresa un correo electrónico válido.', isEmail: true },
         { id: 'motivo',  msg: 'Por favor selecciona el motivo de consulta.' },
         { id: 'fecha',   msg: 'Por favor selecciona una fecha preferida.' },
@@ -179,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let valid = true;
 
-      fields.forEach(({ id, msg, isEmail }) => {
+      fields.forEach(({ id, msg, isEmail, isPhone }) => {
         const group = document.getElementById(id)?.closest('.form-group');
         const input = document.getElementById(id);
         const errEl = group?.querySelector('.error-msg');
@@ -194,6 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isEmail && fieldOk) {
           fieldOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        }
+
+        if (isPhone && fieldOk) {
+          fieldOk = val.replace(/\D/g, '').length >= 8;
         }
 
         if (!fieldOk) {
@@ -213,7 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      if (!valid) return;
+      if (!valid) {
+        setFormStatus('Revisa los campos marcados antes de enviar la solicitud.', 'error');
+        return;
+      }
 
       const nombre   = document.getElementById('nombre').value.trim();
       const telefono = document.getElementById('telefono').value.trim();
@@ -223,8 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const hora     = document.getElementById('hora')?.value || '';
       const mensaje  = document.getElementById('mensaje')?.value.trim() || '';
 
-      const btn = citaForm.querySelector('.btn-submit');
-
       // Enviar con EmailJS
       if (typeof emailjs !== 'undefined' &&
           EMAILJS_PUBLIC_KEY  !== 'TU_PUBLIC_KEY' &&
@@ -232,9 +272,10 @@ document.addEventListener('DOMContentLoaded', () => {
           EMAILJS_TEMPLATE_ID !== 'TU_TEMPLATE_ID') {
 
         if (btn) {
-          btn.textContent = 'Enviando…';
+          setButtonState('Enviando...');
           btn.disabled = true;
         }
+        setFormStatus('Enviando tu solicitud de cita...', 'pending');
 
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           nombre:           nombre,
@@ -256,28 +297,27 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(() => {
           if (btn) {
-            btn.textContent = '¡Solicitud enviada!';
-            btn.style.background = '#2E7D32';
+            setButtonState('¡Solicitud enviada!', 'success');
             btn.disabled = false;
             setTimeout(() => {
-              btn.textContent = 'Enviar Solicitud de Cita';
-              btn.style.background = '';
+              resetButtonState();
+              setFormStatus('');
             }, 4000);
           }
+          setFormStatus('Solicitud enviada correctamente. Te contactaremos para confirmar disponibilidad.', 'success');
           citaForm.reset();
           actualizarHoras('');
         })
         .catch((err) => {
           console.error('EmailJS error:', err);
           if (btn) {
-            btn.textContent = 'Error al enviar. Intenta de nuevo.';
-            btn.style.background = '#c0392b';
+            setButtonState('Error al enviar. Intenta de nuevo.', 'error');
             btn.disabled = false;
             setTimeout(() => {
-              btn.textContent = 'Enviar Solicitud de Cita';
-              btn.style.background = '';
+              resetButtonState();
             }, 4000);
           }
+          setFormStatus('No se pudo enviar la solicitud. Intenta de nuevo o escribe por WhatsApp al 9946-1535.', 'error');
         });
 
       } else {
@@ -295,14 +335,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `mailto:pao.rodriguezra@gmail.com?subject=${subject}&body=${body}`;
 
         if (btn) {
-          const original = btn.textContent;
-          btn.textContent = '¡Solicitud enviada!';
-          btn.style.background = '#2E7D32';
+          setButtonState('Abriendo correo...', 'success');
           setTimeout(() => {
-            btn.textContent = original;
-            btn.style.background = '';
+            resetButtonState();
           }, 3000);
         }
+        setFormStatus('Se abrió tu cliente de correo para enviar la solicitud.', 'success');
       }
     });
   }
