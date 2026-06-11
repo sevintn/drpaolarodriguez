@@ -53,6 +53,135 @@
   }
   </script>
 
+  <!-- JSON-LD: Physician and services -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": "https://drarodrigueznefrologia.com/servicios.html#webpage",
+    "name": "Servicios de Nefrología | Dra. Paola Rodríguez Ramos",
+    "description": "Servicios de nefrología en San Pedro Sula: enfermedad renal crónica, hipertensión, lesión renal aguda, diálisis, trasplante renal y trastornos electrolíticos.",
+    "url": "https://drarodrigueznefrologia.com/servicios.html",
+    "medicalAudience": "Patient",
+    "about": {
+      "@type": "Physician",
+      "@id": "https://drarodrigueznefrologia.com/#physician",
+      "name": "Dra. Paola Rodríguez Ramos",
+      "description": "Nefróloga en San Pedro Sula, Honduras, con atención en Hospital del Valle para enfermedad renal, hipertensión, diálisis y trasplante renal.",
+      "medicalSpecialty": "Nephrology",
+      "url": "https://drarodrigueznefrologia.com/servicios.html",
+      "telephone": "+50499461535",
+      "email": "pao.rodriguezra@gmail.com",
+      "image": "https://drarodrigueznefrologia.com/images/paola-rodriguez.jpg",
+      "priceRange": "$$",
+      "knowsLanguage": ["Spanish", "English"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hospital del Valle, Edificio Principal, Consultorio EP-15",
+        "addressLocality": "San Pedro Sula",
+        "addressRegion": "Cortés",
+        "addressCountry": "HN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 15.5373535,
+        "longitude": -88.0160521
+      },
+      "hasMap": "https://maps.google.com/maps?q=Dra.+Paola+Rodr%C3%ADguez+Ramos+Nefr%C3%B3loga&ll=15.5373535,-88.0160521&z=17",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "14:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "12:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "San Pedro Sula"
+      },
+      "availableService": [
+        {
+          "@type": "MedicalTherapy",
+          "name": "Manejo de enfermedad renal crónica"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Evaluación de hipertensión arterial refractaria"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Atención de lesión renal aguda"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Seguimiento de hemodiálisis y diálisis peritoneal"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Seguimiento post-trasplante renal"
+        },
+        {
+          "@type": "MedicalTherapy",
+          "name": "Evaluación de glomerulopatías y trastornos electrolíticos"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/dra.paolarodrigueznefro",
+        "https://www.linkedin.com/in/paola-rodr%C3%ADguez-ramos-ba85604b/"
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué servicios ofrece una nefróloga?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Una nefróloga evalúa y trata enfermedades del riñón como enfermedad renal crónica, lesión renal aguda, hipertensión relacionada al riñón, alteraciones en la orina, trastornos electrolíticos, diálisis y seguimiento post-trasplante renal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuándo debo consultar por enfermedad renal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Conviene consultar si tienes creatinina elevada, filtrado glomerular bajo, proteína o sangre en la orina, hinchazón, presión difícil de controlar, diabetes con riesgo renal o antecedentes familiares de enfermedad renal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿La hipertensión arterial puede requerir evaluación nefrológica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. La presión arterial difícil de controlar puede dañar los riñones o estar relacionada con una causa renal. La evaluación nefrológica ayuda a proteger la función renal y ajustar el tratamiento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Dónde se brindan los servicios de nefrología?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La Dra. Paola Rodríguez Ramos atiende en Hospital del Valle, Edificio Principal, Consultorio EP-15, San Pedro Sula, Cortés, Honduras."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
@@ -255,6 +384,35 @@
         </article>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section" aria-label="Preguntas frecuentes sobre servicios de nefrología">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Preguntas Frecuentes</p>
+        <h2 class="section-title">Dudas sobre los servicios de nefrología</h2>
+        <p class="section-subtitle">
+          Respuestas rápidas para saber cuándo una evaluación nefrológica puede ayudarte.
+        </p>
+      </div>
+      <article class="article-full">
+        <h3>¿Qué servicios ofrece una nefróloga?</h3>
+        <p>Una nefróloga evalúa y trata enfermedades del riñón como enfermedad renal crónica, lesión renal aguda, hipertensión relacionada al riñón, alteraciones en la orina, trastornos electrolíticos, diálisis y seguimiento post-trasplante renal.</p>
+      </article>
+      <article class="article-full">
+        <h3>¿Cuándo debo consultar por enfermedad renal?</h3>
+        <p>Conviene consultar si tienes creatinina elevada, filtrado glomerular bajo, proteína o sangre en la orina, hinchazón, presión difícil de controlar, diabetes con riesgo renal o antecedentes familiares de enfermedad renal.</p>
+      </article>
+      <article class="article-full">
+        <h3>¿La hipertensión arterial puede requerir evaluación nefrológica?</h3>
+        <p>Sí. La presión arterial difícil de controlar puede dañar los riñones o estar relacionada con una causa renal. La evaluación nefrológica ayuda a proteger la función renal y ajustar el tratamiento.</p>
+      </article>
+      <article class="article-full">
+        <h3>¿Dónde se brindan los servicios de nefrología?</h3>
+        <p>La Dra. Paola Rodríguez Ramos atiende en Hospital del Valle, Edificio Principal, Consultorio EP-15, San Pedro Sula, Cortés, Honduras.</p>
+      </article>
     </div>
   </section>
 
