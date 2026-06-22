@@ -178,7 +178,7 @@
 <body>
 
   <!-- ===================== NAVBAR ===================== -->
-  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+  <nav class="navbar" aria-label="Navegación principal">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__brand">
         <img src="images/logo-nav.png" alt="Logo Dra. Paola Rodríguez" class="navbar__logo" width="120" height="107" decoding="async" />
@@ -201,7 +201,7 @@
         </li>
         <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
       </ul>
-      <button class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -233,7 +233,7 @@
   <section class="section" aria-label="Consulta de nefrología en San Pedro Sula">
     <div class="container">
       <div class="intro__inner">
-        <div class="intro__photo" aria-label="Foto de la Dra. Rodríguez Ramos">
+        <div class="intro__photo">
           <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos, nefróloga en San Pedro Sula" width="746" height="746" decoding="async" fetchpriority="high" />
         </div>
         <div>
@@ -332,7 +332,7 @@
           </p>
           <a href="cita.html" class="btn btn-primary">Solicitar Consulta</a>
         </div>
-        <div class="map-placeholder" aria-label="Mapa de Hospital del Valle, San Pedro Sula">
+        <section class="map-placeholder" aria-label="Mapa de Hospital del Valle, San Pedro Sula">
           <iframe
             title="Hospital del Valle, San Pedro Sula"
             src="https://maps.google.com/maps?q=Dra.+Paola+Rodr%C3%ADguez+Ramos+Nefr%C3%B3loga&ll=15.5373535,-88.0160521&z=17&output=embed"
@@ -340,7 +340,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
-        </div>
+        </section>
       </div>
     </div>
   </section>
@@ -384,7 +384,7 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div>
