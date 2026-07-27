@@ -13,6 +13,28 @@ const EMAILJS_TEMPLATE_PACIENTE_ID = 'template_xt7vfh8';
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const trackEvent = (eventName, params = {}) => {
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', eventName, {
+      page_path: window.location.pathname,
+      page_title: document.title,
+      transport_type: 'beacon',
+      ...params,
+    });
+  };
+
+  const sanitizeLinkUrl = (href, absoluteHref) => {
+    if (href.startsWith('tel:')) return 'tel';
+    if (href.startsWith('mailto:')) return 'mailto';
+
+    if (href.startsWith('https://wa.me/') || href.startsWith('http://wa.me/')) {
+      return absoluteHref.split('?')[0];
+    }
+
+    return absoluteHref.split('?')[0];
+  };
+
   // Inicializar EmailJS
   if (typeof emailjs !== 'undefined') {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -90,7 +112,55 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* -------------------------------------------
-     4. APPOINTMENT FORM — Horas dinámicas + EmailJS
+     4. GA4 EVENTS — Contact and appointment CTAs
+  ------------------------------------------- */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    const linkText = link.textContent.trim().replace(/\s+/g, ' ');
+    const params = {
+      link_url: sanitizeLinkUrl(href, link.href),
+      link_text: linkText,
+    };
+
+    if (href.startsWith('https://wa.me/') || href.startsWith('http://wa.me/')) {
+      trackEvent('click_whatsapp', {
+        ...params,
+        contact_method: 'whatsapp',
+      });
+      return;
+    }
+
+    if (href.startsWith('tel:')) {
+      trackEvent('click_phone', {
+        ...params,
+        contact_method: 'phone',
+      });
+      return;
+    }
+
+    if (href.startsWith('mailto:')) {
+      trackEvent('click_email', {
+        ...params,
+        contact_method: 'email',
+      });
+      return;
+    }
+
+    if (href.includes('g.page/r/') || href.includes('/review')) {
+      trackEvent('click_google_review', params);
+      return;
+    }
+
+    if (href === 'cita.html' || href.endsWith('/cita.html') || link.classList.contains('btn-cita')) {
+      trackEvent('click_appointment_cta', params);
+    }
+  });
+
+  /* -------------------------------------------
+     5. APPOINTMENT FORM — Horas dinámicas + EmailJS
   ------------------------------------------- */
 
   // Horarios según día de la semana
@@ -202,6 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     citaForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      trackEvent('appointment_form_submit_attempt', {
+        form_location: 'cita',
+      });
       setFormStatus('');
 
       const fields = [
@@ -296,6 +369,9 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         })
         .then(() => {
+          trackEvent('appointment_form_submit_success', {
+            form_location: 'cita',
+          });
           if (btn) {
             setButtonState('¡Solicitud enviada!', 'success');
             btn.disabled = false;
@@ -310,6 +386,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((err) => {
           console.error('EmailJS error:', err);
+          trackEvent('appointment_form_submit_error', {
+            form_location: 'cita',
+            error_type: 'emailjs',
+          });
           if (btn) {
             setButtonState('Error al enviar. Intenta de nuevo.', 'error');
             btn.disabled = false;
@@ -321,6 +401,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
       } else {
+        trackEvent('appointment_form_mailto_fallback', {
+          form_location: 'cita',
+        });
         // Fallback mailto (mientras no estén configuradas las claves de EmailJS)
         const subject = encodeURIComponent(`Solicitud de Cita — ${nombre}`);
         const body = encodeURIComponent(
@@ -346,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* -------------------------------------------
-     5. SCROLL REVEAL — Fade-in on scroll
+     6. SCROLL REVEAL — Fade-in on scroll
   ------------------------------------------- */
   const revealEls = document.querySelectorAll(
     '.service-card, .service-full-card, .blog-card, .article-full, .timeline-item, .stat-item'
