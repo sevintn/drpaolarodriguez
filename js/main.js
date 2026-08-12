@@ -371,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(() => {
           trackEvent('appointment_form_submit_success', {
             form_location: 'cita',
+            conversion: true,
           });
           if (btn) {
             setButtonState('¡Solicitud enviada!', 'success');
@@ -403,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         trackEvent('appointment_form_mailto_fallback', {
           form_location: 'cita',
+          conversion: true,
         });
         // Fallback mailto (mientras no estén configuradas las claves de EmailJS)
         const subject = encodeURIComponent(`Solicitud de Cita — ${nombre}`);
