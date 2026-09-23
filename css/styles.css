@@ -10,7 +10,7 @@
 :root {
   --primary:      #1565C0;
   --primary-dark: #0D47A1;
-  --accent:       #42A5F5;
+  --accent:       #1565C0;
   --accent-light: #90CAF9;
   --bg:           #F5F9FF;
   --bg-white:     #FFFFFF;
@@ -53,6 +53,36 @@ h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); }
 h4 { font-size: 1.1rem; }
 
 p { margin-bottom: 1rem; color: var(--text-light); }
+
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.form-consent {
+  margin: 1rem 0;
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+.form-consent label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.form-consent input {
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+.form-consent.error {
+  color: #c0392b;
+}
 
 /* --- Utility --- */
 .container {

@@ -259,6 +259,19 @@
               ></textarea>
             </div>
 
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="sitio-web">Sitio web</label>
+              <input type="text" id="sitio-web" name="sitio-web" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="form-consent">
+              <label>
+                <input type="checkbox" id="privacidad" name="privacidad" required />
+                Entiendo que estos datos se usarán únicamente para responder a mi solicitud de cita.
+              </label>
+              <span class="error-msg" role="alert"></span>
+            </div>
+
             <button type="submit" class="btn-submit">
               Enviar Solicitud de Cita
             </button>

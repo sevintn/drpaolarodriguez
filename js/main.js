@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toggle.classList.toggle('open', isOpen);
       mobileMenu.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     };
 
     toggle.addEventListener('click', () => {
@@ -270,12 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) btn.disabled = false;
     };
 
+    let requestSentToClinic = false;
+
     citaForm.addEventListener('submit', (e) => {
       e.preventDefault();
       trackEvent('appointment_form_submit_attempt', {
         form_location: 'cita',
       });
       setFormStatus('');
+
+      const honeypot = document.getElementById('sitio-web');
+      if (honeypot?.value.trim()) return;
 
       const fields = [
         { id: 'nombre',  msg: 'Por favor ingresa tu nombre completo.' },
@@ -330,6 +336,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const privacyInput = document.getElementById('privacidad');
+      const privacyGroup = privacyInput?.closest('.form-consent');
+      const privacyError = privacyGroup?.querySelector('.error-msg');
+      privacyGroup?.classList.remove('error');
+      if (privacyError) privacyError.textContent = '';
+      if (!privacyInput?.checked) {
+        privacyGroup?.classList.add('error');
+        if (privacyError) privacyError.textContent = 'Debes aceptar el uso de tus datos para solicitar una cita.';
+        setFormStatus('Revisa los campos marcados antes de enviar la solicitud.', 'error');
+        return;
+      }
+
       const nombre   = document.getElementById('nombre').value.trim();
       const telefono = document.getElementById('telefono').value.trim();
       const email    = document.getElementById('email').value.trim();
@@ -350,6 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         setFormStatus('Enviando tu solicitud de cita...', 'pending');
 
+        requestSentToClinic = false;
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           nombre:           nombre,
           telefono:         telefono,
@@ -360,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
           mensaje:          mensaje || 'Ninguno',
         })
         .then(() => {
+          requestSentToClinic = true;
           // Enviar confirmación al paciente
           return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_PACIENTE_ID, {
             nombre:          nombre,
@@ -391,14 +411,20 @@ document.addEventListener('DOMContentLoaded', () => {
             form_location: 'cita',
             error_type: 'emailjs',
           });
-          if (btn) {
-            setButtonState('Error al enviar. Intenta de nuevo.', 'error');
-            btn.disabled = false;
-            setTimeout(() => {
-              resetButtonState();
-            }, 4000);
+          if (requestSentToClinic) {
+            setButtonState('Solicitud recibida', 'success');
+            if (btn) btn.disabled = true;
+            setFormStatus('Recibimos tu solicitud. No fue posible enviar la confirmación automática, pero te contactaremos para confirmar disponibilidad.', 'success');
+          } else {
+            if (btn) {
+              setButtonState('Error al enviar. Intenta de nuevo.', 'error');
+              btn.disabled = false;
+              setTimeout(() => {
+                resetButtonState();
+              }, 4000);
+            }
+            setFormStatus('No se pudo enviar la solicitud. Intenta de nuevo o escribe por WhatsApp al 9946-1535.', 'error');
           }
-          setFormStatus('No se pudo enviar la solicitud. Intenta de nuevo o escribe por WhatsApp al 9946-1535.', 'error');
         });
 
       } else {

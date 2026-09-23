@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "devDependencies": {
+    "jimp": "^1.6.1",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.34.5"
+  }
+}
