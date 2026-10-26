@@ -116,6 +116,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -146,14 +147,14 @@
         <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
       </ul>
 
-      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
 
   <!-- Mobile menu -->
-  <div class="navbar__mobile" role="menu">
+  <div class="navbar__mobile" id="menu-movil">
     <a href="index.html">Inicio</a>
     <a href="trayectoria.html">Trayectoria</a>
     <a href="servicios.html">Servicios</a>
@@ -164,6 +165,7 @@
   </div>
 
   <!-- ===================== HERO ===================== -->
+  <main>
   <section class="hero" aria-label="Presentación">
     <div class="container">
       <div class="hero__inner">
@@ -184,13 +186,13 @@
 
           <div class="hero__buttons">
             <a href="trayectoria.html" class="btn btn-outline">Conoce mi Trayectoria</a>
-            <a href="cita.html" class="btn btn-primary" style="background:#fff;color:var(--primary);">Haz tu Cita</a>
+            <a href="cita.html" class="btn btn-primary btn-light">Haz tu Cita</a>
           </div>
         </div>
 
         <div class="hero__photo-wrap" aria-hidden="true">
           <div class="hero__photo-card">
-            <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" decoding="async" fetchpriority="high" />
+            <picture><source srcset="images/paola-rodriguez.webp" type="image/webp" /><img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" decoding="async" fetchpriority="high" /></picture>
           </div>
         </div>
 
@@ -204,7 +206,7 @@
       <div class="intro__inner">
 
         <div class="intro__photo">
-          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" loading="lazy" decoding="async" />
+          <picture><source srcset="images/paola-rodriguez.webp" type="image/webp" /><img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" loading="lazy" decoding="async" /></picture>
         </div>
 
         <div class="intro__text">
@@ -241,7 +243,7 @@
             </div>
           </div>
 
-          <div style="margin-top:2rem;">
+          <div class="mt-lg">
             <a href="trayectoria.html" class="btn btn-outline-blue">Ver Trayectoria</a>
           </div>
         </div>
@@ -300,7 +302,7 @@
 
       <div class="text-center">
         <a href="nefrologia-san-pedro-sula.html" class="btn btn-primary">Nefrología en San Pedro Sula</a>
-        <a href="servicios.html" class="btn btn-outline-blue" style="margin-left:0.75rem;">Ver todos los servicios</a>
+        <a href="servicios.html" class="btn btn-outline-blue ml-sm">Ver todos los servicios</a>
       </div>
     </div>
   </section>
@@ -350,7 +352,7 @@
 
       <div class="text-center">
         <a href="blog.html#cuando-consultar-nefrologo" class="btn btn-outline-blue">Leer más señales</a>
-        <a href="cita.html" class="btn btn-primary" style="margin-left:0.75rem;">Agendar evaluación</a>
+        <a href="cita.html" class="btn btn-primary ml-sm">Agendar evaluación</a>
       </div>
     </div>
   </section>
@@ -458,6 +460,8 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -518,7 +522,7 @@
       </div>
 
       <div class="footer__bottom">
-        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados. · <a href="politica-privacidad.html">Política de privacidad</a></p>
       </div>
     </div>
   </footer>

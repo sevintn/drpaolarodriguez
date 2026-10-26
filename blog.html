@@ -247,6 +247,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -275,12 +276,12 @@
         </li>
         <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
       </ul>
-      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
-  <div class="navbar__mobile" role="menu">
+  <div class="navbar__mobile" id="menu-movil">
     <a href="index.html">Inicio</a>
     <a href="trayectoria.html">Trayectoria</a>
     <a href="servicios.html">Servicios</a>
@@ -291,6 +292,7 @@
   </div>
 
   <!-- ===================== PAGE HERO ===================== -->
+  <main>
   <header class="page-hero" aria-label="Encabezado de página">
     <div class="container">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
@@ -582,7 +584,7 @@
         informativo y educativo. No sustituye la consulta médica profesional. 
         Ante cualquier síntoma o duda sobre tu salud, consulta siempre a tu médico.
         <br/><br/>
-        <a href="cita.html" class="btn btn-primary" style="font-size:0.88rem;padding:0.6rem 1.4rem;">
+        <a href="cita.html" class="btn btn-primary btn-sm">
           Agenda tu Consulta con la Dra. Rodríguez
         </a>
       </div>
@@ -600,6 +602,8 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -650,7 +654,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados. · <a href="politica-privacidad.html">Política de privacidad</a></p>
       </div>
     </div>
   </footer>

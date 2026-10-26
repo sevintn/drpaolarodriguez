@@ -77,6 +77,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     body {
@@ -88,6 +89,13 @@
       justify-content: center;
       padding: 2rem 1rem;
       font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    .tarjeta-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
 
     .page-title {
@@ -330,6 +338,7 @@
 </head>
 <body>
 
+  <main class="tarjeta-main">
   <p class="page-title">Tarjeta de Presentación</p>
 
   <!-- CARD -->
@@ -405,6 +414,8 @@
   </a>
 
   <p class="hint" id="hint-text">Descarga la imagen y compártela por WhatsApp</p>
+
+  </main>
 
   <!-- html2canvas CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

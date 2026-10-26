@@ -173,6 +173,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -201,12 +202,12 @@
         </li>
         <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
       </ul>
-      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
-  <div class="navbar__mobile" role="menu">
+  <div class="navbar__mobile" id="menu-movil">
     <a href="index.html">Inicio</a>
     <a href="trayectoria.html">Trayectoria</a>
     <a href="servicios.html">Servicios</a>
@@ -217,6 +218,7 @@
   </div>
 
   <!-- ===================== PAGE HERO ===================== -->
+  <main>
   <header class="page-hero" aria-label="Nefrología en San Pedro Sula">
     <div class="container">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
@@ -234,7 +236,7 @@
     <div class="container">
       <div class="intro__inner">
         <div class="intro__photo">
-          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos, nefróloga en San Pedro Sula" width="746" height="746" decoding="async" fetchpriority="high" />
+          <picture><source srcset="images/paola-rodriguez.webp" type="image/webp" /><img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos, nefróloga en San Pedro Sula" width="746" height="746" decoding="async" fetchpriority="high" /></picture>
         </div>
         <div>
           <p class="section-label">Nefróloga en San Pedro Sula</p>
@@ -248,7 +250,7 @@
           <p>
             Consulta disponible en <strong>español e inglés</strong> para pacientes nacionales e internacionales.
           </p>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+          <div class="btn-row">
             <a href="cita.html" class="btn btn-primary">Agendar Cita</a>
             <a href="https://wa.me/50499461535?text=Hola%2C%20quiero%20agendar%20una%20consulta%20de%20nefrolog%C3%ADa%20en%20San%20Pedro%20Sula" class="btn btn-outline-blue" target="_blank" rel="noopener">Escribir por WhatsApp</a>
           </div>
@@ -311,7 +313,7 @@
           <span class="service-full-card__badge">Manejo personalizado</span>
         </article>
       </div>
-      <div class="text-center" style="margin-top:2rem;">
+      <div class="text-center mt-lg">
         <a href="servicios.html" class="btn btn-outline-blue">Ver servicios especializados</a>
       </div>
     </div>
@@ -384,6 +386,8 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -434,7 +438,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados. · <a href="politica-privacidad.html">Política de privacidad</a></p>
       </div>
     </div>
   </footer>

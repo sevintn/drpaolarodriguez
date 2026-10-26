@@ -105,6 +105,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -133,12 +134,12 @@
         </li>
         <li><a href="cita.html" class="btn-cita active">Haz tu Cita</a></li>
       </ul>
-      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
-  <div class="navbar__mobile" role="menu">
+  <div class="navbar__mobile" id="menu-movil">
     <a href="index.html">Inicio</a>
     <a href="trayectoria.html">Trayectoria</a>
     <a href="servicios.html">Servicios</a>
@@ -149,6 +150,7 @@
   </div>
 
   <!-- ===================== PAGE HERO ===================== -->
+  <main>
   <header class="page-hero" aria-label="Encabezado de página">
     <div class="container">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
@@ -267,7 +269,7 @@
             <div class="form-consent">
               <label>
                 <input type="checkbox" id="privacidad" name="privacidad" required />
-                Entiendo que estos datos se usarán únicamente para responder a mi solicitud de cita.
+                <span>Entiendo que estos datos se usarán únicamente para responder a mi solicitud de cita, según la <a href="politica-privacidad.html" target="_blank">política de privacidad</a>.</span>
               </label>
               <span class="error-msg" role="alert"></span>
             </div>
@@ -276,7 +278,7 @@
               Enviar Solicitud de Cita
             </button>
 
-            <p style="font-size:0.8rem;color:var(--text-light);margin-top:1rem;text-align:center;">
+            <p class="form-note">
               * Campos requeridos. Tu solicitud será enviada por correo electrónico y te contactaremos para confirmar.
             </p>
           </form>
@@ -317,8 +319,8 @@
             </div>
 
             <div class="info-item">
-              <div class="info-item__icon" style="color:#25D366;">
-                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="fill:#25D366;stroke:none;">
+              <div class="info-item__icon info-item__icon--whatsapp">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                   <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.849L.057 23.571a.5.5 0 00.612.612l5.722-1.471A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.68-.503-5.214-1.382l-.374-.216-3.878.997.997-3.878-.216-.374A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
                 </svg>
@@ -416,6 +418,8 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -466,7 +470,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados. · <a href="politica-privacidad.html">Política de privacidad</a></p>
       </div>
     </div>
   </footer>
@@ -477,7 +481,7 @@
     WhatsApp
   </a>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

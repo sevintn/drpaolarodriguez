@@ -59,6 +59,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Lato:wght@300;400;700&amp;display=swap" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -87,12 +88,12 @@
         </li>
         <li><a href="cita.html" class="btn-cita">Haz tu Cita</a></li>
       </ul>
-      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false">
+      <button type="button" class="navbar__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
         <span></span><span></span><span></span>
       </button>
     </div>
   </nav>
-  <div class="navbar__mobile" role="menu">
+  <div class="navbar__mobile" id="menu-movil">
     <a href="index.html">Inicio</a>
     <a href="trayectoria.html">Trayectoria</a>
     <a href="servicios.html">Servicios</a>
@@ -103,6 +104,7 @@
   </div>
 
   <!-- ===================== PAGE HERO ===================== -->
+  <main>
   <header class="page-hero" aria-label="Encabezado de página">
     <div class="container">
       <nav class="breadcrumb" aria-label="Ruta de navegación">
@@ -121,7 +123,7 @@
       <div class="intro__inner">
 
         <div class="intro__photo">
-          <img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" loading="lazy" decoding="async" />
+          <picture><source srcset="images/paola-rodriguez.webp" type="image/webp" /><img src="images/paola-rodriguez.jpg" alt="Dra. Paola Rodríguez Ramos — Nefróloga" width="746" height="746" loading="lazy" decoding="async" /></picture>
         </div>
 
         <div>
@@ -146,9 +148,9 @@
             Brindo atención médica en <strong>español e inglés</strong>, facilitando la comunicación con pacientes nacionales e internacionales.
           </p>
           <p>
-            También puedes consultar mi <a href="https://www.linkedin.com/in/paola-rodr%C3%ADguez-ramos-ba85604b/" target="_blank" rel="noopener" style="color:var(--primary);font-weight:700;">perfil profesional en LinkedIn</a>.
+            También puedes consultar mi <a href="https://www.linkedin.com/in/paola-rodr%C3%ADguez-ramos-ba85604b/" target="_blank" rel="noopener" class="text-link">perfil profesional en LinkedIn</a>.
           </p>
-          <a href="cita.html" class="btn btn-primary" style="margin-top:1rem;">Agenda tu Consulta</a>
+          <a href="cita.html" class="btn btn-primary mt-sm">Agenda tu Consulta</a>
         </div>
 
       </div>
@@ -158,7 +160,7 @@
   <!-- ===================== TIMELINE ===================== -->
   <section class="section section--bg" aria-label="Formación académica">
     <div class="container">
-      <div class="text-center" style="margin-bottom:3rem;">
+      <div class="text-center mb-xl">
         <p class="section-label">Formación Académica</p>
         <h2 class="section-title">Camino hacia la Nefrología</h2>
         <p class="section-subtitle">
@@ -237,7 +239,7 @@
 
       </div>
 
-      <div class="text-center" style="margin:4rem 0 2.5rem;">
+      <div class="text-center section-break">
         <p class="section-label">Experiencia Profesional</p>
         <h2 class="section-title">Práctica clínica nacional e internacional</h2>
         <p class="section-subtitle">
@@ -293,7 +295,7 @@
   <!-- ===================== EN LOS MEDIOS ===================== -->
   <section class="section entrevista-section" aria-label="En los medios">
     <div class="container">
-      <div class="text-center" style="margin-bottom:2.5rem;">
+      <div class="text-center mb-lg">
         <p class="section-label">En los medios</p>
         <h2 class="section-title">Publicaciones y Entrevistas</h2>
         <p class="section-subtitle">
@@ -302,7 +304,7 @@
       </div>
 
       <!-- Entrevistas YouTube -->
-      <div class="yt-grid" style="margin-bottom:3rem;">
+      <div class="yt-grid mb-xl">
         <a class="yt-thumb" href="https://www.youtube.com/watch?v=XmRDj5nQ2FE" target="_blank" rel="noopener" aria-label="Ver entrevista en YouTube">
           <img src="https://img.youtube.com/vi/XmRDj5nQ2FE/maxresdefault.jpg" alt="Entrevista Dra. Paola Rodríguez Ramos — Ver en YouTube" width="1280" height="720" loading="lazy" decoding="async" />
           <div class="yt-thumb__play" aria-hidden="true">
@@ -367,6 +369,8 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -417,7 +421,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dra. Paola Rodríguez Ramos · Nefróloga · Todos los derechos reservados. · <a href="politica-privacidad.html">Política de privacidad</a></p>
       </div>
     </div>
   </footer>
