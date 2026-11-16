@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return absoluteHref.split('?')[0];
   };
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // Inicializar EmailJS
   if (typeof emailjs !== 'undefined') {
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (navbar) {
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
+    }, { passive: true });
   }
 
   // Mark active nav link based on current page
@@ -102,12 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* -------------------------------------------
      3. SMOOTH SCROLL for anchor links
   ------------------------------------------- */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
       }
     });
   });
@@ -183,6 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mm   = String(hoy.getMonth() + 1).padStart(2, '0');
     const dd   = String(hoy.getDate()).padStart(2, '0');
     fechaInput.setAttribute('min', `${yyyy}-${mm}-${dd}`);
+
+    // Limitar a 6 meses en adelante
+    const limite = new Date(hoy.getFullYear(), hoy.getMonth() + 6, hoy.getDate());
+    const lmm = String(limite.getMonth() + 1).padStart(2, '0');
+    const ldd = String(limite.getDate()).padStart(2, '0');
+    fechaInput.setAttribute('max', `${limite.getFullYear()}-${lmm}-${ldd}`);
   }
 
   function actualizarHoras(fechaVal) {
@@ -271,6 +279,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) btn.disabled = false;
     };
 
+    // Enlazar cada mensaje de error con su campo para lectores de pantalla
+    citaForm.querySelectorAll('.form-group, .form-consent').forEach((group) => {
+      const input = group.querySelector('input, select, textarea');
+      const errEl = group.querySelector('.error-msg');
+      if (!input || !errEl) return;
+      if (!errEl.id) errEl.id = `${input.id}-error`;
+      input.setAttribute('aria-describedby', errEl.id);
+    });
+
+    const setFieldError = (input, group, message) => {
+      const errEl = group?.querySelector('.error-msg');
+      group?.classList.toggle('error', Boolean(message));
+      if (errEl) errEl.textContent = message || '';
+      if (message) input?.setAttribute('aria-invalid', 'true');
+      else input?.removeAttribute('aria-invalid');
+    };
+
+    // Avisar del domingo al elegir la fecha, sin esperar al envío
+    fechaInput?.addEventListener('change', () => {
+      const [y, m, d] = (fechaInput.value || '').split('-').map(Number);
+      const esDomingo = fechaInput.value && new Date(y, m - 1, d).getDay() === 0;
+      setFieldError(
+        fechaInput,
+        fechaInput.closest('.form-group'),
+        esDomingo ? 'No hay atención los domingos. Por favor elige otro día.' : ''
+      );
+    });
+
     let requestSentToClinic = false;
 
     citaForm.addEventListener('submit', (e) => {
@@ -296,12 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
       fields.forEach(({ id, msg, isEmail, isPhone }) => {
         const group = document.getElementById(id)?.closest('.form-group');
         const input = document.getElementById(id);
-        const errEl = group?.querySelector('.error-msg');
 
         if (!input || !group) return;
 
-        group.classList.remove('error');
-        if (errEl) errEl.textContent = '';
+        setFieldError(input, group, '');
 
         const val = input.value.trim();
         let fieldOk = val !== '';
@@ -315,35 +349,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (!fieldOk) {
-          group.classList.add('error');
-          if (errEl) errEl.textContent = msg;
+          setFieldError(input, group, msg);
           valid = false;
         }
       });
 
-      // Validar que no sea domingo
+      // Validar que la fecha no sea domingo ni esté fuera del rango permitido
       if (fechaInput && fechaInput.value) {
         const [y, m, d] = fechaInput.value.split('-').map(Number);
+        const group = fechaInput.closest('.form-group');
+        let fechaMsg = '';
         if (new Date(y, m - 1, d).getDay() === 0) {
+          fechaMsg = 'No hay atención los domingos. Por favor elige otro día.';
+        } else if (fechaInput.min && fechaInput.value < fechaInput.min) {
+          fechaMsg = 'La fecha no puede ser anterior a hoy.';
+        } else if (fechaInput.max && fechaInput.value > fechaInput.max) {
+          fechaMsg = 'Elige una fecha dentro de los próximos 6 meses.';
+        }
+        if (fechaMsg) {
+          setFieldError(fechaInput, group, fechaMsg);
           valid = false;
-          const group = fechaInput.closest('.form-group');
-          if (group) group.classList.add('error');
         }
       }
 
       if (!valid) {
         setFormStatus('Revisa los campos marcados antes de enviar la solicitud.', 'error');
+        citaForm.querySelector('[aria-invalid="true"]')?.focus();
         return;
       }
 
       const privacyInput = document.getElementById('privacidad');
       const privacyGroup = privacyInput?.closest('.form-consent');
-      const privacyError = privacyGroup?.querySelector('.error-msg');
-      privacyGroup?.classList.remove('error');
-      if (privacyError) privacyError.textContent = '';
+      setFieldError(privacyInput, privacyGroup, '');
       if (!privacyInput?.checked) {
-        privacyGroup?.classList.add('error');
-        if (privacyError) privacyError.textContent = 'Debes aceptar el uso de tus datos para solicitar una cita.';
+        setFieldError(privacyInput, privacyGroup, 'Debes aceptar el uso de tus datos para solicitar una cita.');
+        privacyInput?.focus();
         setFormStatus('Revisa los campos marcados antes de enviar la solicitud.', 'error');
         return;
       }
@@ -463,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '.service-card, .service-full-card, .blog-card, .article-full, .timeline-item, .stat-item'
   );
 
-  if ('IntersectionObserver' in window && revealEls.length) {
+  if ('IntersectionObserver' in window && revealEls.length && !prefersReducedMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
